@@ -5,20 +5,17 @@
 */
 int main(void)
 {
-	int i, j;
+	int i;
 
 	for (i = 0; i < 10; i++)
 	{
-	for (j = i; j < 10; j++)
+	putchar(i + '0');
+	if (i < 9)
 	{
-	printf("%d", i);
-	printf("%d", j);
-	if (i < 9 || j < 9)
-	{
-	printf(", ");
+	putchar(',');
+	putchar(' ');
 	}
 	}
-	}
-	printf("\n");
+	putchar('\n');
 	return (0);
 }
