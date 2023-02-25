@@ -6,6 +6,8 @@
 */
 int main(void)
 {
+	int i, j;
+
 	for (int i = 0; i < 100; i++)
 	{
 	for (int j = i; j < 100; j++)
@@ -27,4 +29,3 @@ int main(void)
 	}
 	return (0);
 }
-
