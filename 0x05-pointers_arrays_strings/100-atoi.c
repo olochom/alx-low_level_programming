@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <stdio.h>
 int _atoi(char *s)
 {
 	int num = 0;
