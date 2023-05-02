@@ -2,29 +2,22 @@
 
 /**
  * get_nodeint_at_index - returns the node at a certain index in a linked list
- * @head:pointer to first node in the linked list
- * @index: index of the node to return
+ * @head: first node in the linked list
+ * @index: index of the node to retrn
  *
- * Return: pointer to the node at index or NULL
+ * Return: pointer to the node at given index, or NULL
  */
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	unsigned int counter = 0;
-	listint_t *currrent = head;
+	unsigned int i = 0;
+	listint_t *temp = head;
 
-	while (current != NULL && counter < index)
+	while (temp && i < index)
 	{
-		current = current->next;
-		counter++;
+		temp = temp->next;
+		i++;
 	}
 
-	if (counter < index || current == NULL)
-	{
-		return (NULL);
-	}
-	else
-	{
-	return (current);
-	}
+	return (temp ? temp : NULL);
 }
 
