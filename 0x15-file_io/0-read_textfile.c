@@ -18,6 +18,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (file_descriptor == -1)
 		return (0);
 	text_buffer = malloc(sizeof(char) * letters);
+	if (text_buffer == NULL)
+	{
+		close(file_descriptor);
+		return (0);
+	}
 	bytes_read = read(file_descriptor, text_buffer, letters);
 	bytes_written = write(STDOUT_FILENO, text_buffer, bytes_read);
 
