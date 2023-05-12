@@ -1,46 +1,27 @@
 #include "main.h"
 #include <stdlib.h>
-/*
+/**
  *read_textfile - reads a text file and prints it to POSIX stdout
  *@filename: the name of the file to read.
- *letters:  allocate memory for buffer
+ *@letters: The maximum number of bytes to read from the file.
  *
- *Return  - number of letters read or 0 on failure
+ *Return: number of bytes read and printed or 0 on failure
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	if (!filename)
-		return (0);
+	char *text_buffer;
+	ssize_t file_descriptor;
+	ssize_t bytes_read;
+	ssize_t bytes_written;
 
-	int fd = open(filename, O_RDONLY);
-
-	if (fd == -1)
+	file_descriptor = open(filename, 0_RDONLY);
+	if (file_descriptor == -1)
 		return (0);
-	char *buf = malloc(letters * sizeof(char));
+	text_buffer = malloc(sizeof(char) * letters);
+	bytes_read = read(file_descriptor, text_buffer, letters);
+	bytes_written = write(STDOUT_FILENO, text_buffer, bytes_read);
 
-	if (!buf)
-	{
-		close(fd);
-		return (0);
-	}
-	ssize_t bytes_read = read(fd, buf, letters);
+	free(text_buffer);
+	close(file_descriptor);
 
-	if (bytes_read == -1)
-	{
-		close(fd);
-		free(buf);
-		return (0);
-	}
-	ssize_t bytes_written = write(STDOUT_FILENO, buf, bytes_read);
-
-	if (bytes_written == -1 || bytes_written != bytes_read)
-	{
-		close(fd);
-		free(buf);
-		return (0);
-	}
-	close(fd);
-	free(buf);
 	return (bytes_written);
-}
-
