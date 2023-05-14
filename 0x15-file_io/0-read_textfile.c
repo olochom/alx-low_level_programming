@@ -14,7 +14,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t bytes_read;
 	ssize_t bytes_written;
 
-	file_descriptor = open(filename, 0_RDONLY);
+	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
 		return (0);
 	text_buffer = malloc(sizeof(char) * letters);
@@ -30,3 +30,4 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	close(file_descriptor);
 
 	return (bytes_written);
+}
